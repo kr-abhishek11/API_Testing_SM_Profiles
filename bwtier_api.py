@@ -79,9 +79,11 @@ def bwtier_update(bwtier_id):
 @app.route("/bwtier/<int:bwtier_id>",methods= ['DELETE'])
 def bwtier_delete(bwtier_id):
     BW_TIER_DATA.remove(BW_TIER_DATA[bwtier_id])
-    #return json.dumps()
-    return json.dumps(BW_TIER_DATA[bwtier_id])
+    if(BW_TIER_DATA[bwtier_id] in BW_TIER_DATA):
+        BW_TIER_DATA.remove(BW_TIER_DATA[bwtier_id])
+    #return json.dumps(BW_TIER_DATA[bwtier_id])
     #return jsonify({'Deleted':True})
+    return json.dumps(BW_TIER_DATA)
 
 
 if __name__ == "__main__":
