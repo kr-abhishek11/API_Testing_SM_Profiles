@@ -68,7 +68,7 @@ def create():
     return json.dumps(new_bw_tier)
 
 # PUT API Call to update an existing BW_TIER_DATA
-@app.route("/bwtier/<int:bwtier_id>",methods=['PUT'])
+@app.route("/bwtier/update/<int:bwtier_id>",methods=['PUT'])
 def bwtier_update(bwtier_id):
      BW_TIER_DATA[bwtier_id]['name']="XYZ"
      BW_TIER_DATA.append(BW_TIER_DATA[bwtier_id]) #updating the list after appending
@@ -76,15 +76,14 @@ def bwtier_update(bwtier_id):
 
 
 # DELETE API call to delete an existing BW_TIER_DATA
-@app.route("/bwtier/<int:bwtier_id>",methods= ['DELETE'])
+@app.route("/bwtier/delete/<int:bwtier_id>",methods= ['DELETE'])
 def bwtier_delete(bwtier_id):
-    BW_TIER_DATA.remove(BW_TIER_DATA[bwtier_id])
+    #BW_TIER_DATA.remove(BW_TIER_DATA[bwtier_id])
     if(BW_TIER_DATA[bwtier_id] in BW_TIER_DATA):
         BW_TIER_DATA.remove(BW_TIER_DATA[bwtier_id])
-    #return json.dumps(BW_TIER_DATA[bwtier_id])
-    #return jsonify({'Deleted':True})
     return json.dumps(BW_TIER_DATA)
 
 
 if __name__ == "__main__":
     app.run(debug=True)
+
