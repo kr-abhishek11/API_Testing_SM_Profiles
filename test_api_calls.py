@@ -81,7 +81,7 @@ def test_put():
     '''Reversing the list so that comparison is made on the first index itself'''
     put_data.reverse()
     if resp_data == put_data[0]:
-        print(resp_data)
+        #print(resp_data)
         print('\n')
         print('****************MATCHES*************')
         print('\n')
