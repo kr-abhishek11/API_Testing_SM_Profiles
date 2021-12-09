@@ -8,14 +8,11 @@ file = "config.ini"
 config = ConfigParser()
 config.read(file)
 
-
-hostname = 'localhost'
-database = 'test'
-username = 'postgres'
-pwd = 'password'
-port_id = 5432
-
-
+hostname = config['DATABASE']['HOST']
+database = config['DATABASE']['DB']
+username = config['DATABASE']['USERNAME']
+pwd = config['DATABASE']['PASSWORD']
+port_id = config['DATABASE']['PORT']
 
 conn= None
 cur= None
@@ -26,12 +23,7 @@ try:
                 user = username,
                 password = pwd,
                 port = port_id ) as conn:
-        bw_tier_data = requests.get(config['URL']['get'])
-        print(bw_tier_data)
-        #bw_tier_data_post = requests.post('http://127.0.0.1:5000/bwtier/create')
-        # bw_tier_data_put = requests.put('http://127.0.0.1:5000/bwtier/0')
-        # bw_tier_data_delete = requests.delete('http://127.0.0.1:5000/bwtier/1')
-        
+    
         with conn.cursor(cursor_factory=psycopg2.extras.DictCursor) as cur:
 
             cur.execute('DROP TABLE IF EXISTS bwtier_data')
